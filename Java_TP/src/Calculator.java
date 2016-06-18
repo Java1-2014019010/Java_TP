@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 
-public class Calculator extends JFrame {
+public class Calculator extends JFrame implements ActionListener {
 	private JPanel panel;
 	private JPanel calpanel;
 	private JPanel valuepanel;
@@ -54,6 +54,7 @@ public class Calculator extends JFrame {
 
 		for (int i = 0; i < button.length; i++) {
 			jbutton[i] = new JButton(button[i]);
+			jbutton[i].addActionListener(this);
 			btnpanel.add(jbutton[i]);
 		}
 		
@@ -64,7 +65,17 @@ public class Calculator extends JFrame {
 		add(btnpanel, BorderLayout.CENTER);
 	}
 
+	public void actionPerformed(ActionEvent e) {
+		String s = e.getActionCommand();
+		//¼ö ÀÔ·Â
+		if (s == "1" || s == "2" || s == "3" || s == "4" || s == "5" || s == "6" || s == "7" || s == "8" || s == "9"
+				|| s == "0" || s == ".") {
+			calfield.setText(calfield.getText() + s);
+			temp.setText(temp.getText() + s);
+		}
 
+	}
+	
 	public static void main(String[] args) {
 		Calculator c = new Calculator();
 		c.setSize(250, 300);
